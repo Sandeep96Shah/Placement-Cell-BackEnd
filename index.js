@@ -1,8 +1,11 @@
 const express = require('express');
 const port = process.env.PORT || 8000;
-const app = express();
-
 const cors = require('cors');
+const JWT = require('./config/passport_jwt');
+const dotenv = require('dotenv').config();
+const db = require('./config/mongoose');
+
+const app = express();
 app.use(cors());
 
 app.use(function(req,res,next){
@@ -15,14 +18,10 @@ app.use(function(req,res,next){
     next();
 })
 
-const dotenv = require('dotenv').config();
-
-const db = require('./config/mongoose');
-
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
-const JWT = require('./config/passport_jwt');
+
 
 app.use('/', require('./routes/index') );
 
