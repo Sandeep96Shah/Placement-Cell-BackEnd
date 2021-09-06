@@ -14,7 +14,7 @@ const mongoose = require('mongoose');
 
 //changes here
 
-mongoose.connect("mongodb://cnplacement:wikor1tUpFDVbKLd@cluster0-shard-00-00.tc1p6.mongodb.net:27017,cluster0-shard-00-01.tc1p6.mongodb.net:27017,cluster0-shard-00-02.tc1p6.mongodb.net:27017/placementCell?ssl=true&replicaSet=atlas-4qukvb-shard-0&authSource=admin&retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true,})
+mongoose.connect(process.env.CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true,})
 .then(() => {
     console.log("Connected to the mongoose atlas!");
 })
