@@ -1,5 +1,6 @@
 const Student = require('../models/Student');
 const Interviews = require('../models/Interviews');
+//controller action to create the student
 module.exports.create = async (req,res) => {
     console.log("req.body add student", req.body);
     try{
@@ -13,8 +14,6 @@ module.exports.create = async (req,res) => {
         }
         //both are done
         //make it optional like in 1 way only the student detail will be added and in another way both the student detail and the interview is added.
-        //todo later
-        //when the student is added with the interview detail then add the respective student into the added interview
         let student;
         if(req.body.company_name){
         student = await Student.create({
@@ -41,10 +40,10 @@ module.exports.create = async (req,res) => {
                     date_of_interview:req.body.date_of_interview,
                     // result:req.body.result,
                     result:"Didn't Attend",
-                    //how to set the id given by db to the id of the interview document just to make it easy else no need
                 }
             ]
         });
+        //when the student is added with the interview detail then add the respective student into the added interview
         const interviewCheck = await Interviews.findOne({company_name : req.body.company_name});
             console.log("interciewcheck", interviewCheck);
             if(!interviewCheck){
@@ -71,7 +70,6 @@ module.exports.create = async (req,res) => {
             }
         }else{
         student = await Student.create({
-            //changes here
             name:req.body.name,
             email:req.body.email,
             batch:req.body.batch,
@@ -103,6 +101,7 @@ module.exports.create = async (req,res) => {
 
 }
 
+//action to update the student whenever an interview is added.
 module.exports.update = async (req, res) => {
     console.log("student update", req.body);
     //here passing the eamil to add the interview in the specified student.
@@ -155,6 +154,7 @@ module.exports.update = async (req, res) => {
     }
 }
 
+//action to fetch the entire students information from the database
 module.exports.all = async (req, res) => {
     try{
         const students = await Student.find({});

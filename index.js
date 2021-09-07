@@ -1,3 +1,5 @@
+//here all the required files are added.
+//locally the web app is running on port 8000
 const express = require('express');
 const port = process.env.PORT || 8000;
 const cors = require('cors');

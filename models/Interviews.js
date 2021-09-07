@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+//schema for the interview
 const interviewSchema = new mongoose.Schema({
     company_name:{
         type:String,

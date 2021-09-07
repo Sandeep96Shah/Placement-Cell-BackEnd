@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 const saltRounds = 10;
 const jwt = require('jsonwebtoken');
 
+//function for implement the hashed password
 async function hashPassword (password) {
     const saltPassword = await new Promise((resolve,reject) => {
         bcrypt.genSalt(saltRounds, function (err, salt){
@@ -24,6 +25,7 @@ async function hashPassword (password) {
     return hashedPassword
 }
 
+//function to validate the password
 async function comparePassword(password,hash){
     return await new Promise((resolve,reject) => {
         bcrypt.compare(password, hash, function(err, isMatch){
@@ -35,6 +37,7 @@ async function comparePassword(password,hash){
     })
 }
 
+//controller action to create the user
 module.exports.create = async (req, res) => {
     
     try{
@@ -71,6 +74,7 @@ module.exports.create = async (req, res) => {
     }
 }
 
+//controller action to valid the use while signing in
 module.exports.signIn = async (req, res) => {
     try{
         const user = await User.findOne({email:req.body.email});

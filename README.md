@@ -14,6 +14,7 @@
 ## Tech Stack
 * Nodejs - BackEnd
 * Reactjs - FrontEnd
+* MongoDB - Database
 
 ### npm install 
  * express

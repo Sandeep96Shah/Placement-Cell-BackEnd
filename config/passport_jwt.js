@@ -1,3 +1,4 @@
+//Passport-JWT is used for authentication.
 const passport = require("passport");
 
 const JWTStrategy = require("passport-jwt").Strategy;

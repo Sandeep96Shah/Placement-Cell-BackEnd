@@ -1,5 +1,6 @@
 const Interviews = require('../models/Interviews');
 
+//controller action to create the interview
 module.exports.create = async (req, res) => {
     try{
         const check = await Interviews.findOne({company_name:req.body.company_name});
@@ -22,12 +23,10 @@ module.exports.create = async (req, res) => {
     }
 }
 
+//action to fetch the entire interview list from database
 module.exports.all = async (req, res) => {
-    // here is it better to fetched the entire informtaion of the student or only the name
-
     try{
         const interviews = await Interviews.find({}).populate('students.student', 'name');
-        //console.log("interviews", interviews);
         return res.status(200).json({
             message:"Here is the list of all the Interviews",
             interviews,
